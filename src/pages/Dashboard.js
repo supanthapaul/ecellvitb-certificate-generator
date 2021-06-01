@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
-import PostsList from '../components/CertsList';
+import CertsList from '../components/CertsList';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,7 +21,7 @@ const Dashboard = () => {
     <div className={classes.root}>
       <Typography variant="h5">Your Certificates</Typography>
 			{/* <UploadSound /> */}
-			<PostsList />
+			<CertsList />
     </div>
   );
 }

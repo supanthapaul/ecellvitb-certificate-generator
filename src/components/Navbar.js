@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { Link as RouterLink, useHistory } from 'react-router-dom';
+import { Link as RouterLink, useHistory, useLocation } from 'react-router-dom';
 import { useStoreActions, useStoreState } from 'easy-peasy';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
 	const history = useHistory();
 	const classes = useStyles();
+	const location = useLocation();
 	const startLogout = useStoreActions(actions => actions.auth.startLogout);
 	const startSetCerts = useStoreActions(actions => actions.certs.startSetCerts);
 	const setLogin = useStoreActions(actions => actions.auth.login);
@@ -34,19 +35,23 @@ const Navbar = () => {
 	const authState = useStoreState(state => state.auth.user);
 
 	useEffect(() => {
-		// Listen for firebase auth change event
-		firebase.auth().onAuthStateChanged((user) => {
-			if(user) {
-				// store user in store
-				setLogin(user);
-				startSetCerts(user);
-				history.push('/dashboard');
-			}
-			else {
-				setLogout();
-				history.push('/');
-			}
-		})
+
+			// Listen for firebase auth change event
+			firebase.auth().onAuthStateChanged((user) => {
+				if(user) {
+					// store user in store
+					setLogin(user);
+					startSetCerts(user);
+					// Only redirect to dashboard if the current page is not a certificate page
+					if(!location.pathname.includes('certificate')) {
+						history.push('/dashboard');
+					}
+				}
+				else {
+					setLogout();
+					history.push('/');
+				}
+			})
 	}, []);
 
 	const logoutUser = () => {
