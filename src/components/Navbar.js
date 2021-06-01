@@ -49,7 +49,9 @@ const Navbar = () => {
 				}
 				else {
 					setLogout();
-					history.push('/');
+					if(!location.pathname.includes('certificate')) {
+						history.push('/');
+					}
 				}
 			})
 	}, []);
