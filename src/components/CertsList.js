@@ -43,7 +43,8 @@ const PostsList = () => {
 
   return (
     <List className={classes.root}>
-			{
+
+			{ certsState.length > 0 ?
 				certsState.map((cert, i) => (
 					<>
 						<ListItem button alignItems="flex-start" onClick={e => setSubListOpen(!subListOpen)}>
@@ -82,13 +83,18 @@ const PostsList = () => {
 									<ListItemText secondary={"Credential ID: " + cert.id} />
 								</ListItem>
 								<ListItem className={classes.nested}>
-									<ListItemText secondary={"Credential URL: https://ecellvitbcertificates.com/certificate/" + cert.id} />
+									<ListItemText secondary={`Credential URL: https://${window.location.hostname}/certificate/` + cert.id} />
 								</ListItem>
 							</List>
 						</Collapse>
 						<Divider variant="inset" component="li" />
 					</>
 				))
+				: (
+					<div style={{textAlign: 'center'}}>
+						<Typography>No Certificates associated to this email.</Typography>
+					</div>
+				)
 			}
 
 		</List>

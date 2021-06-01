@@ -1,3 +1,4 @@
+import {useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -7,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: '700px',
 		margin: '0 auto',
-		marginTop: theme.spacing(3)
+		marginTop: theme.spacing(3),
   },
   inline: {
     display: 'inline',
@@ -16,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Dashboard = () => {
 	const classes = useStyles();
+	useEffect(() => {
+		document.title ="Certificates | E-Cell VITB Certification Portal"
+	}, [])
 
   return (
     <div className={classes.root}>

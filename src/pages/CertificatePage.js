@@ -5,6 +5,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { useHistory, useParams } from 'react-router-dom'
 import {database as db, storage} from '../firebase/firebaseSetup';
 import { PDFDocument } from 'pdf-lib'
+import { ErrorRounded } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,6 +28,7 @@ const Dashboard = () => {
 	const [pdfUrl, setPdfUrl] = useState("");
 	const [certData, setCertData] = useState("");
 	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	useEffect(async () => {
 		db.collection("certificates").doc(id).get().then(async (doc) => {
@@ -55,7 +57,17 @@ const Dashboard = () => {
 					setLoading(false);
 				})
 			}
+			else {
+				setLoading(false);
+				setError("Invalid Certificate ID");
+			}
 		})
+		.catch(err => {
+			setLoading(false);
+			setError(err)
+		})
+		document.title =`Certificate ${id} | E-Cell VITB Certification Portal`
+
 	}, [])
 
   return (
@@ -64,12 +76,16 @@ const Dashboard = () => {
 				<>
 				{
 					certData && (
+						<>
 						<Typography variant="subtitle1" className={classes.titleText}>This certificate is hereby granted to <b>{certData.name}</b> on {certData.date.toDate().toDateString()} by <a href="http://ecellvitb.tk/" target="_blank">E-Cell, VIT Bhopal</a></Typography>
+						<iframe src={pdfUrl} width="100%" height="500px"></iframe>
+						</>
 					)
 				}
-				<iframe src={pdfUrl} width="100%" height="500px"></iframe>
 			</>)}
-
+			{error && (
+				<Typography variant="h5" style={{color:'red'}}>{error}</Typography>
+			)}
     </div>
   );
 }
