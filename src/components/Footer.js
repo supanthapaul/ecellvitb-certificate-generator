@@ -35,7 +35,7 @@ export default function Footer() {
 							© 2021 E-Cell, VIT Bhopal
 						</Typography>
 						<Typography variant="body1" style={{fontSize: '12px'}} color="inherit">
-						Made by <a style={{color:'#fff'}} href="https://www.linkedin.com/in/supantha-paul-5977041b8/">Supantha Paul</a>
+						Made by <a style={{color:'#fff'}} href="https://www.linkedin.com/in/supantha-paul-5977041b8/" target="_blank">Supantha Paul</a>
 						</Typography>
 					</Toolbar>
 				</Container>

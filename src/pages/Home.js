@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useStoreActions, useStoreState } from 'easy-peasy';
+import React, { useEffect } from 'react';
+import {  useStoreState } from 'easy-peasy';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/lab/Alert';
 import firebase from '../firebase/firebaseSetup';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 
@@ -27,6 +27,7 @@ const uiConfig = {
   // We will display Google and Facebook as auth providers.
   signInOptions: [
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
+		firebase.auth.GoogleAuthProvider.PROVIDER_ID
   ],
   callbacks: {
     // Avoid redirects after sign-in.
@@ -36,37 +37,7 @@ const uiConfig = {
 
 const Home = () => {
 	const classes = useStyles();
-	const startLogin = useStoreActions(actions => actions.auth.startLogin);
-	const setLoginError = useStoreActions(actions => actions.auth.setError);
 	const errorState = useStoreState(state => state.auth.error);
-
-	const loginWithGoogle = () => {
-		startLogin()
-			.then(res => {
-				if(res.additionalUserInfo.isNewUser) {
-					const message = "Please enter/update the name that you wish to be used in the certificates.\n Please make sure the name is correct, THIS CANNOT BE CHANGED LATER.";
-					window.focus();
-					const newName = prompt(message, res.user.displayName);
-					firebase.auth().currentUser.updateProfile({
-						displayName: newName
-					})
-					.then(() => {
-						console.log("Profile name updated to " + newName);
-					})
-					.catch((err) => {
-						console.log(err);
-					})
-				}
-			})
-			.catch(error => {
-				// login failed, set error state
-				setLoginError(error);
-			})
-	}
-
-	const updateName = (name) => {
-
-	}
 
 	useEffect(() => {
 		document.title ="Login | E-Cell VITB Certification Portal"
@@ -76,7 +47,7 @@ const Home = () => {
     <div className={classes.root}>
       <Typography variant="h3">E-Cell VITB Certification Portal</Typography>
 			<br/>
-      <Typography variant="subtitle1">Please Login with the same email that you provided for registering to our events in order to see your present or past certificates.</Typography>
+			<Alert severity="info">Please Signup/Login with the same email that you provided for registering to our events in order to see your present or past certificates.</Alert>
 			<br/>
 			<br/>
 			<StyledFirebaseAuth className={classes.authUI} uiConfig={uiConfig} firebaseAuth={firebase.auth()} />

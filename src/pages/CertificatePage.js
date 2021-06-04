@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { useHistory, useParams } from 'react-router-dom'
 import {database as db, storage} from '../firebase/firebaseSetup';
-import { PDFDocument } from 'pdf-lib'
+import { PDFDocument, StandardFonts } from 'pdf-lib'
 import { ErrorRounded } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,11 +44,15 @@ const Dashboard = () => {
 					})
 					const pdfDoc = await PDFDocument.load(certFile)
 					pdfDoc.setTitle("Certificate of achievement")
+					const myFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+					const page = pdfDoc.getPages()[0]
+					const {height, width} = page.getSize()
 					// draw name
-					pdfDoc.getPages()[0].drawText(certData.name, {
-						x: 300,
+					page.drawText(certData.name, {
+						x: (width - myFont.widthOfTextAtSize(certData.name, 46)) / 2,
 						y: 270,
-						size: 56
+						size: 46,
+						font: myFont
 					})
 
 					const pdfUrl = await pdfDoc.saveAsBase64({dataUri: true});
