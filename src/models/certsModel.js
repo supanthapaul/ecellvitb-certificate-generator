@@ -30,8 +30,8 @@ const certsModel = {
 	// get all the certificates of the user from firebase
 	// payload --> uid
 	startSetCerts: thunk((actions, payload) => {
-		return db.collection("certificates").where("email", "==", payload.email)
-			.onSnapshot(snapshot => {
+		return db.collection("certificates").where("email", "==", payload.email).get()
+		.then(snapshot => {
 				const certificates = [];
 				snapshot.forEach(doc => {
 					certificates.push({
