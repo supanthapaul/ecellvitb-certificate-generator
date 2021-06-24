@@ -44,14 +44,14 @@ const Dashboard = () => {
 					})
 					const pdfDoc = await PDFDocument.load(certFile)
 					pdfDoc.setTitle("Certificate of achievement")
-					const myFont = await pdfDoc.embedFont(StandardFonts.TimesRoman);
+					const myFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 					const page = pdfDoc.getPages()[0]
 					const {height, width} = page.getSize()
 					// draw name
 					page.drawText(certData.name, {
-						x: (width - myFont.widthOfTextAtSize(certData.name, 46)) / 2,
-						y: 270,
-						size: 46,
+						x: (width - myFont.widthOfTextAtSize(certData.name, 46)) / 2 + 102,
+						y: 345,
+						size: 42,
 						font: myFont
 					})
 
