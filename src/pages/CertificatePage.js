@@ -49,9 +49,9 @@ const Dashboard = () => {
 					const {height, width} = page.getSize()
 					// draw name
 					page.drawText(certData.name, {
-						x: (width - myFont.widthOfTextAtSize(certData.name, 46)) / 2 + 102,
+						x: (width - myFont.widthOfTextAtSize(certData.name, 46)) / 2 + 115,
 						y: 345,
-						size: 42,
+						size: 40,
 						font: myFont
 					})
 
