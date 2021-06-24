@@ -5,6 +5,7 @@ import Footer from './Footer';
 import HomePage from '../pages/Home';
 import DashboardPage from '../pages/Dashboard';
 import CertificatePage from '../pages/CertificatePage';
+import AdminPage from '../pages/Admin';
 import PrivateRoute from './PrivateRoute';
 import * as ROUTES from '../constants/routes';
 
@@ -16,6 +17,7 @@ const App = () => {
 			<div style={{paddingBottom: '64px'}}>
 				<Route exact path={ROUTES.HOME} component={HomePage} />
 				<PrivateRoute path={ROUTES.DASHBOARD} component={DashboardPage} />
+				<PrivateRoute path="/admin" component={AdminPage} />
 				<Route path="/certificate/:id" component={CertificatePage} />
 			</div>
 			<Footer />

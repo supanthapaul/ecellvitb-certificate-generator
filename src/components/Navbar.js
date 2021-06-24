@@ -72,6 +72,7 @@ const Navbar = () => {
 						<>
 						<Button color="inherit" onClick={logoutUser}>Logout</Button>
 						<Button color="inherit" component={RouterLink} to={ROUTES.DASHBOARD}>Dashboard</Button>
+						<Button color="inherit" component={RouterLink} to="/admin">Admin</Button>
 						</> :
 						<Button color="inherit" component={RouterLink} to={ROUTES.HOME}>Login</Button>
 					}
