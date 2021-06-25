@@ -5,7 +5,7 @@ Automatic certificate generation and validation platform. View the live site [he
 The code is not perfect, and most not commented. Observe at your own risk ✨
 
 ## Setup
-This project uses Firebase. To connect it with your firebase project, create a `.env` file on the root directory with the following keys,
+This project uses Firebase. To connect it with your firebase project, create a `.env` file on the root directory with the following keys,  
 REACT_APP_API_KEY  
 REACT_APP_APP_ID  
 REACT_APP_AUTH_DOMAIN  
