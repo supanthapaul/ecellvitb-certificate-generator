@@ -6,12 +6,12 @@ The code is not perfect, and most not commented. Observe at your own risk ✨
 
 ## Setup
 This project uses Firebase. To connect it with your firebase project, create a `.env` file on the root directory with the following keys,
-REACT_APP_API_KEY
-REACT_APP_APP_ID
-REACT_APP_AUTH_DOMAIN
-REACT_APP_MESSAGING_SENDER_ID
-REACT_APP_PROJECT_ID
-REACT_APP_STORAGE_BUCKET
+REACT_APP_API_KEY  
+REACT_APP_APP_ID  
+REACT_APP_AUTH_DOMAIN  
+REACT_APP_MESSAGING_SENDER_ID  
+REACT_APP_PROJECT_ID  
+REACT_APP_STORAGE_BUCKET  
 
 Key values should correspond to your Firebase project config.
 
