@@ -2,7 +2,7 @@
 
 Automatic certificate generation and validation platform. View the live site [here](https://ecellvitb-certification.netlify.app/).
 
-The code is not perfect, and most not commented. Observe at your own risk ✨
+The code is not perfect, and mostly not commented. Observe at your own risk ✨
 
 ## Setup
 This project uses Firebase. To connect it with your firebase project, create a `.env` file on the root directory with the following keys,  
